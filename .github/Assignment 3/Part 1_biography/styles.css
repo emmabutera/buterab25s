@@ -1,0 +1,27 @@
+/*
+  Name: Butera Emmanuel
+  File: styles.css
+  Date: 20 June 2025
+  Stylesheet for the biography page assignment.
+*/
+
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  color: #333;
+  padding: 20px;
+  line-height: 1.6;
+}
+
+h1 {
+  color: #0066cc;
+}
+
+img {
+  border-radius: 8px;
+  width: 150px;
+  height: auto;
+  display: block;
+  margin-bottom: 20px;
+}
