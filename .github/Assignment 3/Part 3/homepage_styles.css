@@ -4,3 +4,17 @@
   Date: 20 June 2025
   Stylesheet for the typesetting homepage assignment.
 */
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  color: #333;
+  margin: 0;
+  padding: 40px;
+}
+
+header, main, footer {
+  max-width: 800px;
+  margin: 0 auto;
+}
