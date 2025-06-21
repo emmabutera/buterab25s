@@ -4,3 +4,33 @@
   Date: 20 June 2025
   Stylesheet for the biography page.
 */
+
+body {
+  font-family: sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  margin: 0;
+  padding: 40px;
+}
+
+header, main, footer {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.bio {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.bio img {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
+
+.bio-text {
+  flex: 1;
+}
