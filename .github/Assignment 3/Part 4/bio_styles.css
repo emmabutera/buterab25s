@@ -34,3 +34,31 @@ header, main, footer {
 .bio-text {
   flex: 1;
 }
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 1.4em;
+  color: #007acc;
+  margin-top: 20px;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+ul li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+footer {
+  text-align: center;
+  margin-top: 60px;
+  font-size: 0.9em;
+  color: #777;
+}
+
