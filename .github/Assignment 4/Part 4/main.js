@@ -76,6 +76,25 @@ EvilCircle.prototype.draw = function () {
   ctx.stroke();
 };
 
+EvilCircle.prototype.setControls = function () {
+  window.addEventListener('keydown', (e) => {
+    switch (e.key) {
+      case 'a':
+        this.x -= this.velX;
+        break;
+      case 'd':
+        this.x += this.velX;
+        break;
+      case 'w':
+        this.y -= this.velY;
+        break;
+      case 's':
+        this.y += this.velY;
+        break;
+    }
+  });
+};
+
 
 // Animation loop
 function loop() {
@@ -93,6 +112,8 @@ function loop() {
 loop();
 
 const evil = new EvilCircle(width / 2, height / 2);
+evil.setControls();
+
 
 // Update the animation loop to include the evil circle
 function loop() {
@@ -110,3 +131,4 @@ function loop() {
 
   requestAnimationFrame(loop);
 }
+
