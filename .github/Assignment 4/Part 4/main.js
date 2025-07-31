@@ -5,6 +5,7 @@ const ctx = canvas.getContext('2d');
 const width = canvas.width;
 const height = canvas.height;
 
+// Utility function to get random value
 function random(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
@@ -17,9 +18,9 @@ function Ball(x, y, velX, velY, color, size) {
   this.velY = velY;
   this.color = color;
   this.size = size;
+  this.exists = true;
 }
 
-// Draw the ball
 Ball.prototype.draw = function () {
   ctx.beginPath();
   ctx.fillStyle = this.color;
@@ -27,7 +28,6 @@ Ball.prototype.draw = function () {
   ctx.fill();
 };
 
-// Update ball position and bounce off walls
 Ball.prototype.update = function () {
   if ((this.x + this.size) >= width || (this.x - this.size) <= 0) {
     this.velX = -this.velX;
@@ -41,22 +41,6 @@ Ball.prototype.update = function () {
   this.y += this.velY;
 };
 
-// Create multiple balls
-const balls = [];
-
-while (balls.length < 25) {
-  const size = random(10, 20);
-  const ball = new Ball(
-    random(size, width - size),
-    random(size, height - size),
-    random(-7, 7),
-    random(-7, 7),
-    `rgb(${random(0,255)},${random(0,255)},${random(0,255)})`,
-    size
-  );
-  balls.push(ball);
-}
-
 // EvilCircle constructor
 function EvilCircle(x, y) {
   this.x = x;
@@ -67,7 +51,6 @@ function EvilCircle(x, y) {
   this.size = 10;
 }
 
-// Draw method for EvilCircle
 EvilCircle.prototype.draw = function () {
   ctx.beginPath();
   ctx.strokeStyle = this.color;
@@ -78,7 +61,7 @@ EvilCircle.prototype.draw = function () {
 
 EvilCircle.prototype.setControls = function () {
   window.addEventListener('keydown', (e) => {
-    switch (e.key) {
+    switch (e.key.toLowerCase()) {
       case 'a':
         this.x -= this.velX;
         break;
@@ -95,40 +78,60 @@ EvilCircle.prototype.setControls = function () {
   });
 };
 
+EvilCircle.prototype.checkCollision = function () {
+  for (const ball of balls) {
+    if (ball.exists) {
+      const dx = this.x - ball.x;
+      const dy = this.y - ball.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance < this.size + ball.size) {
+        ball.exists = false;
+      }
+    }
+  }
+};
+
+// Create ball array and EvilCircle instance
+const balls = [];
+
+while (balls.length < 25) {
+  const size = random(10, 20);
+  const ball = new Ball(
+    random(size, width - size),
+    random(size, height - size),
+    random(-7, 7),
+    random(-7, 7),
+    `rgb(${random(0,255)},${random(0,255)},${random(0,255)})`,
+    size
+  );
+  balls.push(ball);
+}
+
+const evil = new EvilCircle(width / 2, height / 2);
+evil.setControls();
 
 // Animation loop
 function loop() {
   ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
   ctx.fillRect(0, 0, width, height);
 
-  for (const ball of balls) {
-    ball.draw();
-    ball.update();
-  }
-
-  requestAnimationFrame(loop);
-}
-
-loop();
-
-const evil = new EvilCircle(width / 2, height / 2);
-evil.setControls();
-
-
-// Update the animation loop to include the evil circle
-function loop() {
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
-  ctx.fillRect(0, 0, width, height);
+  let ballCount = 0;
 
   for (const ball of balls) {
     if (ball.exists) {
       ball.draw();
       ball.update();
+      ballCount++;
     }
   }
 
-  evil.draw(); // 👈 Draw the EvilCircle here
+  evil.draw();
+  evil.checkCollision();
+
+  document.querySelector('.ball-count').textContent = ballCount;
 
   requestAnimationFrame(loop);
 }
 
+loop();
