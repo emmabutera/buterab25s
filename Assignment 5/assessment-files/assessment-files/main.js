@@ -1,45 +1,51 @@
-// functionality for showing/hiding the comments section
-
+// Show/hide comments with proper ARIA
 const showHideBtn = document.querySelector('.show-hide');
-const commentWrapper = document.querySelector('.comment-wrapper');
+const commentWrapper = document.getElementById('comments');
 
-commentWrapper.style.display = 'none';
+commentWrapper.hidden = true;
 showHideBtn.setAttribute('aria-expanded', 'false');
+showHideBtn.textContent = 'Show comments';
 
 showHideBtn.addEventListener('click', () => {
-  const isHidden = commentWrapper.style.display === 'none';
-  commentWrapper.style.display = isHidden ? 'block' : 'none';
-  showHideBtn.textContent = isHidden ? 'Hide comments' : 'Show comments';
-  showHideBtn.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+  const willShow = commentWrapper.hidden;
+  commentWrapper.hidden = !willShow;
+  showHideBtn.setAttribute('aria-expanded', String(willShow));
+  showHideBtn.textContent = willShow ? 'Hide comments' : 'Show comments';
 });
 
-
-// functionality for adding a new comment via the comments form
-
+// Add comment with simple validation
 const form = document.querySelector('.comment-form');
-const nameField = document.querySelector('#name');
-const commentField = document.querySelector('#comment');
+const nameField = document.getElementById('name');
+const commentField = document.getElementById('comment');
 const list = document.querySelector('.comment-container');
 
-form.onsubmit = function(e) {
+form.addEventListener('submit', (e) => {
   e.preventDefault();
-  submitComment();
-};
+  const nameValue = nameField.value.trim();
+  const commentValue = commentField.value.trim();
+  if (!nameValue || !commentValue) return;
 
-function submitComment() {
-  const listItem = document.createElement('li');
+  const li = document.createElement('li');
   const namePara = document.createElement('p');
   const commentPara = document.createElement('p');
-  const nameValue = nameField.value;
-  const commentValue = commentField.value;
-
   namePara.textContent = nameValue;
   commentPara.textContent = commentValue;
 
-  list.appendChild(listItem);
-  listItem.appendChild(namePara);
-  listItem.appendChild(commentPara);
+  li.appendChild(namePara);
+  li.appendChild(commentPara);
+  list.appendChild(li);
 
   nameField.value = '';
   commentField.value = '';
-}
+
+  // Ensure comments are visible after adding one
+  if (commentWrapper.hidden) {
+    commentWrapper.hidden = false;
+    showHideBtn.setAttribute('aria-expanded', 'true');
+    showHideBtn.textContent = 'Hide comments';
+  }
+
+  // Move focus to the new comment for feedback
+  li.tabIndex = -1;
+  li.focus();
+});

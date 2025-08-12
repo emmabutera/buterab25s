@@ -1,255 +1,100 @@
-/* || General setup */
+/* ==== General ==== */
+html, body { margin: 0; padding: 0; }
+html { font-size: 10px; background-color: #eef2f5; }
+body { width: 80%; min-width: 1024px; margin: 0 auto; }
 
-html, body {
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  font-size: 10px;
-  background-color: #dde;
-}
-
-body {
-  width: 80%;
-  min-width: 1024px;
-  margin: 0 auto;
-}
-
-/* || typography */
-
-font[size="7"], font[size="6"], font[size="5"] {
-  font-family: 'Sonsie One', cursive;
-  color: #2a2a2a;
-}
+/* ==== Typography ==== */
+h1, h2, h3 { font-family: 'Sonsie One', cursive; color: #1f2937; }
+h1 { font-size: 4rem; text-align: center; color: #fff; text-shadow: 2px 2px 10px #000; }
+h2 { font-size: 3rem; text-align: center; }
+h3 { font-size: 2.2rem; }
 
 p, input, li, table, label {
   font-family: 'Open Sans Condensed', sans-serif;
-  color: #2a2a2a;
-}
-
-font[size="7"] {
-  font-size: 4rem;
-  text-align: center;
-  color: white;
-  text-shadow: 2px 2px 10px black;
-}
-
-font[size="6"] {
-  font-size: 3rem;
-  text-align: center;
-}
-
-font[size="5"] {
-  font-size: 2.2rem;
-}
-
-p, li, table {
+  color: #1f2937;
   font-size: 1.6rem;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
-/* || header layout */
-
-div[class="nav"], article, footer, .secondary {
-  background-color: green;
-}
-
-article, footer, .secondary {
-  padding: 10px 30px;
-}
-
-article {
-  margin-right: 10px;
-}
-
-div[class="nav"] {
-  height: 50px;
-  background-color: ff80ff;
-  display: flex;
-  padding: 1% 0;
-  margin-bottom: 10px;
-}
-
-div[class="nav"] ul {
-  padding: 0;
-  list-style-type: none;
-  flex: 2;
-  display: flex;
-}
-
-div[class="nav"] li {
-  display: inline;
-  text-align: center;
-  flex: 1;
-}
-
-div[class="nav"] a {
-  display: inline-block;
-  font-size: 2rem;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: black;
-}
-
-div[class="nav"] .search {
-  flex: 1;
+/* ==== Navigation ==== */
+.nav {
+  height: 56px;
+  background-color: #111827;
   display: flex;
   align-items: center;
-  height: 100%;
-  padding: 0 2em;
+  padding: 0 1rem;
+  margin-bottom: 12px;
+  gap: 1rem;
 }
+.nav ul { padding: 0; margin: 0; list-style: none; display: flex; gap: 1.5rem; }
+.nav li { display: inline; }
+.nav a { color: #fff; text-decoration: none; font-size: 2rem; text-transform: uppercase; }
+.nav a:focus, .nav a:hover { text-decoration: underline; }
 
-.search input {
-  font-size: 1.6rem;
-  height: 32px;
-}
+.search { display: flex; align-items: center; margin-left: auto; gap: .5rem; }
+.search input { font-size: 1.6rem; height: 32px; padding: 0 .6rem; }
+.search button { height: 32px; padding: 0 1rem; background: #2563eb; border: 0; color: #fff; font-size: 1.4rem; cursor: pointer; }
+.search button:hover, .search button:focus { background: #1e40af; }
 
-.search input[type="search"] {
-  flex: 3;
-}
+/* ==== Layout ==== */
+main { display: flex; gap: 10px; }
+article { flex: 5; padding: 10px 30px; background-color: #ffffff; border: 1px solid #d1d5db; border-radius: 6px; }
+.secondary { flex: 2; padding: 10px 30px; background-color: #ffffff; border: 1px solid #d1d5db; border-radius: 6px; }
+footer { margin-top: 10px; padding: 10px 30px; background-color: #ffffff; border: 1px solid #d1d5db; border-radius: 6px; }
 
-.search input[type="submit"] {
-  flex: 1;
-  margin-left: 1rem;
-  background: #333;
-  border: 0;
-  color: white;
-}
+/* ==== Table ==== */
+table { width: 100%; background-color: #f9fafb; border-collapse: collapse; }
+caption { text-align: left; font-weight: bold; padding: 8px 0; }
+th, td { padding: 10px; border-bottom: 1px solid #e5e7eb; }
+td { text-align: center; }
+th[scope="col"] { border-bottom: 2px solid #374151; color: #111827; }
+tbody tr:nth-child(odd) { background-color: #eef2f7; }
 
-/* || main layout */
+/* ==== Media ==== */
+img, audio { display: block; margin: 0 auto; }
+img { max-width: 100%; height: auto; }
+audio { width: 100%; max-width: 520px; }
 
-main {
-  display: flex;
-}
-
-article {
-  flex: 5;
-}
-
-.secondary {
-  flex: 2;
-}
-
-footer {
-  margin-top: 10px;
-}
-
-/* Table styling */
-
-table {
-  width: 100%;
-  background-color: #dde;
-  border-collapse: collapse;
-}
-
-th, td {
-  padding: 10px;
-}
-
-td {
-  text-align: center;
-}
-
-th[scope="col"] {
-  border-bottom: 1px solid black;
-}
-
-tbody tr:nth-child(odd) {
-  background-color: #def;
-}
-
-/* styling content images and audio */
-
-img, audio {
-  display: block;
-  margin: 0 auto;
-}
-
-audio {
-  width: 500px;
-}
-
-/* Comments styling */
-
-.comments {
-  background-color: #def;
-  padding: 10px;
-}
-
+/* ==== Comments ==== */
+.comments { background-color: #f3f4f6; padding: 10px; border-radius: 6px; border: 1px solid #e5e7eb; }
 .show-hide {
+  text-align: center;
+  width: 170px;
+  background: #111827;
+  border: 0;
+  color: #fff;
+  font-size: 1.6rem;
+  line-height: 36px;
   cursor: pointer;
+  border-radius: 4px;
 }
+.show-hide:hover, .show-hide:focus { background: #000; }
 
-.comments font[size="6"] {
-  font-size: 2rem;
-}
-
-.comments font[size="6"]:nth-of-type(2) {
-  margin-bottom: 0;
-}
-
-.comment-form {
-  margin-bottom: 3rem;
-}
-
-.comment-form .flex-pair {
-  display: flex;
-  padding: 0 3rem 1rem;
-}
-
-.comment-form label {
-  align-self: center;
-  flex: 2;
-  text-align: right;
-}
-
-.comment-form input {
-  margin-left: 1rem;
-  flex: 6;
-}
-
-.show-hide {
-  text-align: center;
-  width: 150px;
-}
-
-.comment-form input, .comment-form label, .show-hide {
-  font-size: 1.6rem;
-  line-height: 32px;
-}
-
-.comment-form input[type="submit"], .show-hide {
-  background: #333;
-  border: 0;
-  color: white;
-}
-
+.comment-form { margin-bottom: 2rem; }
+.comment-form .flex-pair { display: flex; gap: 1rem; padding: 0 0 1rem; }
+.comment-form label { align-self: center; width: 160px; text-align: right; }
+.comment-form input[type="text"] { flex: 1; padding: .4rem .6rem; }
 .comment-form input[type="submit"] {
   width: 30%;
+  min-width: 200px;
   display: block;
   margin: 0 auto;
+  background: #2563eb;
+  border: 0;
+  color: white;
+  line-height: 36px;
+  cursor: pointer;
+  border-radius: 4px;
 }
+.comment-form input[type="submit"]:hover,
+.comment-form input[type="submit"]:focus { background: #1e40af; }
 
-.comment-container {
-  margin-top: 0;
-}
+.comment-container { margin-top: 0; padding-left: 0; }
+.comment-container li { list-style-type: none; display: flex; gap: 1rem; padding: .5rem 0; border-top: 1px solid #e5e7eb; }
+.comment-container li p:nth-child(1) { width: 160px; font-weight: bold; text-align: right; }
+.comment-container li p:nth-child(2) { flex: 1; }
 
-.comment-container li {
-  list-style-type: none;
-  display: flex;
-}
-
-.comment-container li p:nth-child(1) {
-  flex: 1;
-  font-weight: bold;
-}
-
-.comment-container li p:nth-child(2) {
-  flex: 5;
-}
-
-/* Skip link visibility */
+/* ==== Skip link ==== */
 .skip-link {
   position: absolute;
   left: -9999px;
@@ -263,59 +108,24 @@ audio {
   width: auto;
   height: auto;
   padding: 0.5rem 1rem;
-  background: #000;
+  background: #111827;
   color: #fff;
   z-index: 1000;
+  border-radius: 4px;
 }
 
-/* Replace <font> styling with heading styling */
-h1, h2, h3 {
-  font-family: 'Sonsie One', cursive;
-  color: #2a2a2a;
-}
-h1 { font-size: 4rem; text-align: center; color: white; text-shadow: 2px 2px 10px black; }
-h2 { font-size: 3rem; text-align: center; }
-h3 { font-size: 2.2rem; }
-
-/* Update nav selector because we changed from div.nav to nav.nav */
-nav.nav {
-  height: 50px;
-  background-color: #ff80ff; /* fix missing # in original */
-  display: flex;
-  padding: 1% 0;
-  margin-bottom: 10px;
-}
-nav.nav ul { padding: 0; list-style-type: none; flex: 2; display: flex; }
-nav.nav li { display: inline; text-align: center; flex: 1; }
-nav.nav a {
-  display: inline-block;
-  font-size: 2rem;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: black;
+/* ==== Visually hidden (for offscreen labels) ==== */
+.visually-hidden {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 
-/* Visible focus for keyboard users */
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-.select:focus-visible {
-  outline: 3px solid #000;
+/* ==== Focus outlines ==== */
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 3px solid #111827;
   outline-offset: 2px;
 }
-
-/* Keep the existing .skip-link rules you added earlier */
-
-/* Make the toggle button look like a button (was styled as a div before) */
-.show-hide {
-  text-align: center;
-  width: 150px;
-  background: #333;
-  border: 0;
-  color: #fff;
-  font-size: 1.6rem;
-  line-height: 32px;
-  cursor: pointer;
-}
-
